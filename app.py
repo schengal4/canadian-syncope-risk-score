@@ -36,8 +36,7 @@ st.markdown('### Clinical Evaluation')
 predisposition_to_vasovagal_symptoms = st.radio('Predisposition to vasovagal symptoms', ['Yes', 'No'], index=1, horizontal = True,
                                                help = "Triggered by prolonged standing, fear, emotion, pain, or being in a warm crowded place")
 
-history_of_heart_disease_tooltip = "Includes coronary or valvular heart disease, cardiomyopathy, congestive heart failure and non-sinus rhythm " + 
-"(electrocardiogram evidence during index visit or documented history of ventricular or atrial arrhythmias, or device implantation)"
+history_of_heart_disease_tooltip = "Includes coronary or valvular heart disease, cardiomyopathy, congestive heart failure and non-sinus rhythm (electrocardiogram evidence during index visit or documented history of ventricular or atrial arrhythmias, or device implantation)"
 history_of_heart_disease = st.radio('History of heart disease', ['Yes', 'No'], index=1, horizontal = True, 
                                     help=history_of_heart_disease_tooltip)
 systolic_bp_reading_tooltip = "Includes blood pressure values from triage until disposition from the emergency department."
