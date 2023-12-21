@@ -44,8 +44,8 @@ systolic_bp_reading = st.radio('Any systolic blood pressure reading < 90 or > 18
                                help=systolic_bp_reading_tooltip)
 
 st.markdown('### Investigations')
-elevated_troponin_level = st.radio('Elevated troponin level', ['Yes', 'No'], index=1, horizontal = True)
-abnormal_qrs_axis = st.radio('Abnormal QRS axis', ['Yes', 'No'], index=1, horizontal = True)
+elevated_troponin_level = st.radio('Elevated troponin level (> 99th percentile of normal population)', ['Yes', 'No'], index=1, horizontal = True)
+abnormal_qrs_axis = st.radio('Abnormal QRS axis (<-30 degrees or > 100 degrees)', ['Yes', 'No'], index=1, horizontal = True)
 qrs_duration = st.radio('QRS duration > 130 ms', ['Yes', 'No'], index=1, horizontal = True)
 corrected_qt_interval = st.radio('Corrected QT interval > 480 ms', ['Yes', 'No'], index=1, horizontal = True)
 
