@@ -32,18 +32,18 @@ def calculate_risk_percentage(risk_score):
 st.title('Canadian Syncope Risk Score Calculator')
 st.write('This calculator helps to identify patients with syncope at risk of serious adverse events within 30 days after disposition from the emergency department.')
 
-st.markdown('###Clinical Evaluation')
+st.markdown('### Clinical Evaluation')
 predisposition_to_vasovagal_symptoms = st.radio('Predisposition to vasovagal symptoms', ['Yes', 'No'], index=1, horizontal = True)
 history_of_heart_disease = st.radio('History of heart disease', ['Yes', 'No'], index=1, horizontal = True)
 systolic_bp_reading = st.radio('Any systolic blood pressure reading < 90 or > 180 mm Hg', ["Yes", "No"], index=1, horizontal = True)
 
-st.markdown('###Investigations')
+st.markdown('### Investigations')
 elevated_troponin_level = st.radio('Elevated troponin level', ['Yes', 'No'], index=1, horizontal = True)
 abnormal_qrs_axis = st.radio('Abnormal QRS axis', ['Yes', 'No'], index=1, horizontal = True)
 qrs_duration = st.radio('QRS duration > 130 ms', ['Yes', 'No'], index=1, horizontal = True)
 corrected_qt_interval = st.radio('Corrected QT interval > 480 ms', ['Yes', 'No'], index=1, horizontal = True)
 
-st.markdown('###Diagnosis in Emergency Department')
+st.markdown('### Diagnosis in Emergency Department')
 vasovagal_syncope = st.radio('Vasovagal syncope', ['Yes', 'No'], index=1, horizontal = True)
 cardiac_syncope = st.radio('Cardiac syncope', ['Yes', 'No'], index=1, horizontal = True)
 
@@ -62,7 +62,7 @@ risk_score = calculate_risk_score(risk_inputs)
 risk_category = determine_risk_category(risk_score)
 risk_percentage = calculate_risk_percentage(risk_score)
 
-st.markdown("##Results")
+st.markdown("## Results")
 st.write(f'Calculated Risk Score: **{risk_score}**')
 st.write(f'Risk Category: **{risk_category}**')
 st.write(f'Estimated risk of serious adverse events: **{risk_percentage}%**')
