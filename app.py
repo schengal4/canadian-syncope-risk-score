@@ -8,7 +8,7 @@ with st.form('risk_score_form'):
     st.subheader('Clinical Evaluation')
     predisposition_to_vasovagal_symptoms = st.radio('Predisposition to vasovagal symptoms', ['Yes', 'No'])
     history_of_heart_disease = st.radio('History of heart disease', ['Yes', 'No'])
-    systolic_bp_reading = st.number_input('Any systolic pressure reading < 90 or > 180 mm Hg', min_value=0, max_value=300, value=120, step=1)
+    systolic_bp_reading = st.radio('Any systolic blood pressure reading < 90 or > 180 mm Hg', ["Yes", "No"])
 
     st.subheader('Investigations')
     elevated_troponin_level = st.radio('Elevated troponin level', ['Yes', 'No'])
