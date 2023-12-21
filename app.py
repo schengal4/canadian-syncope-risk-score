@@ -36,19 +36,19 @@ st.write('This calculator helps to identify patients with syncope at risk of ser
 
 with st.form('risk_score_form'):
     st.subheader('Clinical Evaluation')
-    predisposition_to_vasovagal_symptoms = st.radio('Predisposition to vasovagal symptoms', ['Yes', 'No'], value = "No", horizontal = "True")
-    history_of_heart_disease = st.radio('History of heart disease', ['Yes', 'No'], value = "No", horizontal = "True")
-    systolic_bp_reading = st.radio('Any systolic blood pressure reading < 90 or > 180 mm Hg', ["Yes", "No"], value = "No", horizontal = "True")
+    predisposition_to_vasovagal_symptoms = st.radio('Predisposition to vasovagal symptoms', ['Yes', 'No'], index=1, horizontal = "True")
+    history_of_heart_disease = st.radio('History of heart disease', ['Yes', 'No'], index=1, horizontal = "True")
+    systolic_bp_reading = st.radio('Any systolic blood pressure reading < 90 or > 180 mm Hg', ["Yes", "No"], index=1, horizontal = "True")
 
     st.subheader('Investigations')
-    elevated_troponin_level = st.radio('Elevated troponin level', ['Yes', 'No'], value = "No", horizontal = "True")
-    abnormal_qrs_axis = st.radio('Abnormal QRS axis', ['Yes', 'No'], value = "No", horizontal = "True")
-    qrs_duration = st.radio('QRS duration > 130 ms', ['Yes', 'No'], value = "No", horizontal = "True")
-    corrected_qt_interval = st.radio('Corrected QT interval > 480 ms', ['Yes', 'No'], value = "No", horizontal = "True")
+    elevated_troponin_level = st.radio('Elevated troponin level', ['Yes', 'No'], index=1, horizontal = "True")
+    abnormal_qrs_axis = st.radio('Abnormal QRS axis', ['Yes', 'No'], index=1, horizontal = "True")
+    qrs_duration = st.radio('QRS duration > 130 ms', ['Yes', 'No'], index=1, horizontal = "True")
+    corrected_qt_interval = st.radio('Corrected QT interval > 480 ms', ['Yes', 'No'], index=1, horizontal = "True")
 
     st.subheader('Diagnosis in Emergency Department')
-    vasovagal_syncope = st.radio('Vasovagal syncope', ['Yes', 'No'], value = "No", horizontal = "True")
-    cardiac_syncope = st.radio('Cardiac syncope', ['Yes', 'No'], value = "No", horizontal = "True")
+    vasovagal_syncope = st.radio('Vasovagal syncope', ['Yes', 'No'], index=1, horizontal = "True")
+    cardiac_syncope = st.radio('Cardiac syncope', ['Yes', 'No'], index=1, horizontal = "True")
 
     submitted = st.form_submit_button('Calculate Risk Score')
     if submitted:
