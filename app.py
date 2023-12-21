@@ -64,6 +64,6 @@ risk_percentage = calculate_risk_percentage(risk_score)
         
 st.write(f'Calculated Risk Score: {risk_score}')
 st.write(f'Risk Category: {risk_category}')
-st.write(f'Estimated risk of serious adverse events: {risk_percentage}')
+st.write(f'Estimated risk of serious adverse events: {risk_percentage}%')
 
 
