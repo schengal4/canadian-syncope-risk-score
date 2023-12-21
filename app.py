@@ -26,7 +26,7 @@ def calculate_risk_score(inputs):
     score = 0
     score += -1 if inputs['predisposition_to_vasovagal_symptoms'] == 'Yes' else 0
     score += 1 if inputs['history_of_heart_disease'] == 'Yes' else 0
-    score += 2 if inputs['systolic_bp_reading'] < 90 or inputs['systolic_bp_reading'] > 180 else 0
+    score += 2 if inputs['systolic_bp_reading'] == "Yes" else 0
     score += 2 if inputs['elevated_troponin_level'] == 'Yes' else 0
     score += 1 if inputs['abnormal_qrs_axis'] == 'Yes' else 0
     score += 1 if inputs['qrs_duration'] == 'Yes' else 0
