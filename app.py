@@ -46,7 +46,7 @@ def determine_risk_category(risk_score):
     else:
         risk_category = "Very High"
     return risk_category
-def calculate_risk_percentage(risk_score);
+def calculate_risk_percentage(risk_score):
     risk_score_to_percentage = {-3: 0.4, -2: 0.7, -1: 1.2, 0: 1.9, 1: 3.1, 2: 5.1, 3: 8.1, 4: 12.9, 5: 19.7, 
                                 6: 28.9, 7: 40.3, 8: 52.8, 9: 65.0, 10: 75.5, 11: 83.6}
     return risk_score_to_percentage[risk_score]
