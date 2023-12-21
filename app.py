@@ -7,73 +7,81 @@ st.write('This tool calculates the risk of serious adverse events after syncope.
 # Creating a form for user input
 with st.form('risk_score_form'):
     st.subheader('Clinical Evaluation')
-    predisposition_to_vasovagal_symptoms = st.selectbox(
+    predisposition_to_vasovagal_symptoms = st.radio(
         'Predisposition to Vasovagal Symptoms:',
         options=['No', 'Yes'],
-        format_func=lambda x: 'No' if x == 'No' else 'Yes, -1 Point'
+        index=0  # Default to 'No'
     )
-    history_of_heart_disease = st.checkbox('History of Heart Disease (+1 Point)')
-    systolic_bp_reading = st.number_input(
-        'Any Systolic Pressure Reading <90 or >180 mmHg (+2 Points)',
-        min_value=0, max_value=300, step=1
+    history_of_heart_disease = st.radio(
+        'History of Heart Disease:',
+        options=['No', 'Yes'],
+        index=0  # Default to 'No'
+    )
+    systolic_bp_reading = st.radio(
+        'Any Systolic Pressure Reading <90 or >180 mmHg:',
+        options=['No', 'Yes'],
+        index=0  # Default to 'No'
     )
 
     st.subheader('Investigations')
-    elevated_troponin_level = st.checkbox('Elevated Troponin Level (+2 Points)')
-    abnormal_qrs_axis = st.checkbox('Abnormal QRS Axis (+1 Point)')
-    qrs_duration = st.checkbox('QRS Duration >130 ms (+1 Point)')
-    corrected_qt_interval = st.checkbox('Corrected QT Interval >480 ms (+2 Points)')
+    elevated_troponin_level = st.radio(
+        'Elevated Troponin Level:',
+        options=['No', 'Yes'],
+        index=0  # Default to 'No'
+    )
+    abnormal_qrs_axis = st.radio(
+        'Abnormal QRS Axis:',
+        options=['No', 'Yes'],
+        index=0  # Default to 'No'
+    )
+    qrs_duration = st.radio(
+        'QRS Duration >130 ms:',
+        options=['No', 'Yes'],
+        index=0  # Default to 'No'
+    )
+    corrected_qt_interval = st.radio(
+        'Corrected QT Interval >480 ms:',
+        options=['No', 'Yes'],
+        index=0  # Default to 'No'
+    )
 
     st.subheader('Diagnosis in Emergency Department')
     diagnosis = st.radio(
         'Diagnosis:',
         options=['Vasovagal Syncope', 'Cardiac Syncope', 'Neither'],
-        index=2,
-        format_func=lambda x: f'{x} ({"-2 Points" if x == "Vasovagal Syncope" else "+2 Points" if x == "Cardiac Syncope" else "0 Point"})'
+        index=2  # Default to 'Neither'
     )
 
     submit_button = st.form_submit_button('Calculate Risk Score')
 
+# Logic for calculating the score
 if submit_button:
     score = 0
     # Clinical evaluation
-    if predisposition_to_vasovagal_symptoms == 'Yes':
-        score -= 1
-    if history_of_heart_disease:
-        score += 1
-    if systolic_bp_reading < 90 or systolic_bp_reading > 180:
-        score += 2
+    score -= 1 if predisposition_to_vasovagal_symptoms == 'Yes' else 0
+    score += 1 if history_of_heart_disease == 'Yes' else 0
+    score += 2 if systolic_bp_reading == 'Yes' else 0
 
     # Investigations
-    if elevated_troponin_level:
-        score += 2
-    if abnormal_qrs_axis:
-        score += 1
-    if qrs_duration:
-        score += 1
-    if corrected_qt_interval:
-        score += 2
+    score += 2 if elevated_troponin_level == 'Yes' else 0
+    score += 1 if abnormal_qrs_axis == 'Yes' else 0
+    score += 1 if qrs_duration == 'Yes' else 0
+    score += 2 if corrected_qt_interval == 'Yes' else 0
 
-    # Diagnosis in the emergency department
+    # Diagnosis in emergency department
     if diagnosis == 'Vasovagal Syncope':
         score -= 2
     elif diagnosis == 'Cardiac Syncope':
         score += 2
-
-    # Calculate risk category
-    risk_category = ''
-    if score <= -3:
-        risk_category = 'Very Low'
-    elif score <= 0:
-        risk_category = 'Low'
-    elif score <= 3:
-        risk_category = 'Medium'
-    elif score <= 6:
-        risk_category = 'High'
-    else:
-        risk_category = 'Very High'
-
-    # Display the results
+    
+    # Output results
+    risk_category = ('Very Low' if score <= -2 else
+                     'Low' if score <= 0 else
+                     'Medium' if score <= 3 else
+                     'High' if score <= 5 else
+                     'Very High')
     st.write(f'Your Canadian Syncope Risk Score is: {score}')
     st.write(f'Estimated Risk Category: {risk_category}')
 
+    estimated_risk_of_serious_adverse_events = {-3: 0.4, -2: 0.7, -1: 1.2, 0: 1.9, 1: 3.1, 2: 5.1, 3: 8.1, 4: 12.9, 5: 19.7, 6:28.9, 7:40.3, 8:52.8, 9:65.0, 10: 75.5, 11:83.6}
+    st.write(f'Estimated Risk of Serious Adverse Events: {estimated_risk_of_serious_adverse_events[score]}%')
